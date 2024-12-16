@@ -137,3 +137,6 @@ dist
 .pnp.*
 
 .husky/
+
+bun.lockb
+yarn.lock
