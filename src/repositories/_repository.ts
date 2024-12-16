@@ -1,5 +1,3 @@
-import type { IRepository, ISequelize } from '@/interfaces/sequelize.interface';
-import { getTableConnection } from '@/table-connection';
 import type {
 	BulkCreateOptions,
 	CreateOptions,
@@ -11,6 +9,8 @@ import type {
 	WhereOptions,
 } from 'sequelize';
 import { Sequelize, type Model, type ModelCtor } from 'sequelize-typescript';
+import type { IRepository, ISequelize } from '../interfaces/sequelize.interface';
+import { getTableConnection } from '../table-connection';
 
 export abstract class _Repository<M extends Model, I> {
 	protected connection: ISequelize;

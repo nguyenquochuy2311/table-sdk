@@ -1,10 +1,10 @@
-import type { IRepository } from '@/interfaces/sequelize.interface';
-import { TableDataColumn, type IRecordDataModel } from '@/models';
 import { transform } from 'lodash';
 import type { ModelAttributeColumnOptions } from 'sequelize';
 import { DataTypes } from 'sequelize';
 import type { Model, ModelCtor } from 'sequelize-typescript';
 import { isValid } from 'ulidx';
+import type { IRepository } from '../interfaces/sequelize.interface';
+import { TableDataColumn, type IRecordDataModel } from '../models';
 import { _Repository } from './_repository';
 
 export class _RecordDataRepository extends _Repository<Model, IRecordDataModel> {

@@ -1,6 +1,6 @@
-import { FieldDataType } from '@/field-datatype';
-import type { IFieldModel } from '@/models/field';
 import { z } from 'zod';
+import { FieldDataType } from '../../field-datatype';
+import type { IFieldModel } from '../../models/field';
 
 export enum CalculationType {
 	CountAll = 'count-all',

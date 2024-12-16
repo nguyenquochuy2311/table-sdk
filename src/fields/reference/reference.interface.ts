@@ -1,5 +1,5 @@
-import type { IFieldModel } from '@/models/field';
 import { z } from 'zod';
+import type { IFieldModel } from '../../models/field';
 
 export enum FieldReferenceTwoWayLinkUpdateMode {
 	CONVERT_ONE_WAY = 1,

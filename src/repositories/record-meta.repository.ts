@@ -1,6 +1,6 @@
-import type { IRepository } from '@/interfaces/sequelize.interface';
-import type { IRecordMetaModel } from '@/models';
 import { RecordMetaModel } from '@/models';
+import type { IRepository } from '../interfaces/sequelize.interface';
+import type { IRecordMetaModel } from '../models';
 import { _Repository } from './_repository';
 
 export class _RecordMetaRepository extends _Repository<RecordMetaModel, IRecordMetaModel> {

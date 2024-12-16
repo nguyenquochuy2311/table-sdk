@@ -1,4 +1,4 @@
-import { FieldDataType } from '@/field-datatype';
+import { FieldDataType } from '../../field-datatype';
 import { values } from 'lodash';
 import { Column, CreatedAt, DataType, DeletedAt, Index, Model, PrimaryKey, Table, UpdatedAt } from 'sequelize-typescript';
 import { isValid, ulid } from 'ulidx';

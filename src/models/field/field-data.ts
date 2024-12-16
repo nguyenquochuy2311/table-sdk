@@ -1,6 +1,3 @@
-import type { IFieldFormulaData } from '@/fields/formula';
-import type { IFieldLookupData } from '@/fields/lookup';
-import type { IFieldReferenceData } from '@/fields/reference';
-import type { IFieldTextData } from '@/fields/text';
+import type { IFieldFormulaData, IFieldLookupData, IFieldReferenceData, IFieldTextData } from '../../fields';
 
 export type IFieldData = IFieldTextData | IFieldLookupData | IFieldReferenceData | IFieldFormulaData;
