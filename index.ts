@@ -1,11 +1,12 @@
 import { FieldDataType } from './src/field-datatype';
 import * as FieldType from './src/fields';
+import { Models } from './src/models';
 import { _FieldRepository } from './src/repositories/field.repository';
 import { _RecordDataRepository } from './src/repositories/record-data.repository';
 import { _RecordMetaRepository } from './src/repositories/record-meta.repository';
 import { getTableConnection, initTableConnection } from './src/table-connection';
 
-export { _FieldRepository, _RecordDataRepository, _RecordMetaRepository, FieldDataType, FieldType, getTableConnection, initTableConnection };
+export { _FieldRepository, _RecordDataRepository, _RecordMetaRepository, FieldDataType, FieldType, getTableConnection, initTableConnection, Models };
 
 (async () => {
 	await initTableConnection({
