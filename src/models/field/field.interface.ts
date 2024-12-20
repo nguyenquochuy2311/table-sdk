@@ -1,4 +1,4 @@
-import type { FieldDataType } from '@/field-datatype';
+import type { FieldDataType } from '../../field-datatype';
 import type { IFieldInitialData } from './field-initial-data';
 import type { IFieldParams } from './field-params';
 
