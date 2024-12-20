@@ -137,3 +137,4 @@ dist
 .pnp.*
 
 .husky/
+bun.lockb
