@@ -4,8 +4,8 @@ import {dtsPlugin} from 'esbuild-plugin-d.ts';
 
 await build({
 	entryPoints: ['src/**/*.ts'],
-	bundle: false,
-	outdir: 'dist',
+	bundle: true,
+	outdir: 'build',
 	platform: 'node',
 	target: 'esnext',
 	packages: 'external',
