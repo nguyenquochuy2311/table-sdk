@@ -181,9 +181,9 @@ var require_record_meta_model = __commonJS({
     var tslib_1 = require("tslib");
     var sequelize_typescript_1 = require("sequelize-typescript");
     var ulidx_1 = require("ulidx");
-    var RecordMetaModel3 = class RecordMetaModel extends sequelize_typescript_1.Model {
+    var RecordMetaModel2 = class RecordMetaModel extends sequelize_typescript_1.Model {
     };
-    exports2.RecordMetaModel = RecordMetaModel3;
+    exports2.RecordMetaModel = RecordMetaModel2;
     tslib_1.__decorate([
       sequelize_typescript_1.PrimaryKey,
       (0, sequelize_typescript_1.Column)({
@@ -196,7 +196,7 @@ var require_record_meta_model = __commonJS({
         }
       }),
       tslib_1.__metadata("design:type", String)
-    ], RecordMetaModel3.prototype, "id", void 0);
+    ], RecordMetaModel2.prototype, "id", void 0);
     tslib_1.__decorate([
       (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING(26),
@@ -209,11 +209,11 @@ var require_record_meta_model = __commonJS({
       }),
       sequelize_typescript_1.Index,
       tslib_1.__metadata("design:type", String)
-    ], RecordMetaModel3.prototype, "tableID", void 0);
+    ], RecordMetaModel2.prototype, "tableID", void 0);
     tslib_1.__decorate([
       (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING }),
       tslib_1.__metadata("design:type", Object)
-    ], RecordMetaModel3.prototype, "name", void 0);
+    ], RecordMetaModel2.prototype, "name", void 0);
     tslib_1.__decorate([
       (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING(26),
@@ -224,29 +224,29 @@ var require_record_meta_model = __commonJS({
         }
       }),
       tslib_1.__metadata("design:type", Object)
-    ], RecordMetaModel3.prototype, "createdBy", void 0);
+    ], RecordMetaModel2.prototype, "createdBy", void 0);
     tslib_1.__decorate([
       sequelize_typescript_1.CreatedAt,
       (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
       tslib_1.__metadata("design:type", typeof (_a = typeof Date !== "undefined" && Date) === "function" ? _a : Object)
-    ], RecordMetaModel3.prototype, "createdAt", void 0);
+    ], RecordMetaModel2.prototype, "createdAt", void 0);
     tslib_1.__decorate([
       sequelize_typescript_1.UpdatedAt,
       (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
       tslib_1.__metadata("design:type", typeof (_b = typeof Date !== "undefined" && Date) === "function" ? _b : Object)
-    ], RecordMetaModel3.prototype, "updatedAt", void 0);
+    ], RecordMetaModel2.prototype, "updatedAt", void 0);
     tslib_1.__decorate([
       sequelize_typescript_1.DeletedAt,
       (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
       tslib_1.__metadata("design:type", Object)
-    ], RecordMetaModel3.prototype, "deletedAt", void 0);
-    exports2.RecordMetaModel = RecordMetaModel3 = tslib_1.__decorate([
+    ], RecordMetaModel2.prototype, "deletedAt", void 0);
+    exports2.RecordMetaModel = RecordMetaModel2 = tslib_1.__decorate([
       (0, sequelize_typescript_1.Table)({
         modelName: "recordMeta",
         tableName: "RecordMetas",
         paranoid: true
       })
-    ], RecordMetaModel3);
+    ], RecordMetaModel2);
   }
 });
 
@@ -256,10 +256,10 @@ __export(repository_exports, {
   _Repository: () => _Repository
 });
 module.exports = __toCommonJS(repository_exports);
-var import_sequelize_typescript3 = require("sequelize-typescript");
+var import_sequelize = require("sequelize");
 
 // src/table-connection.ts
-var import_lodash = require("lodash");
+var import_lodash2 = require("lodash");
 var import_promise = require("mysql2/promise");
 var import_sequelize_typescript2 = require("sequelize-typescript");
 
@@ -267,7 +267,7 @@ var import_sequelize_typescript2 = require("sequelize-typescript");
 var models_exports = {};
 __export(models_exports, {
   Models: () => Models,
-  TableDataColumn: () => TableDataColumn
+  RecordDataColumn: () => RecordDataColumn
 });
 
 // src/models/field/index.ts
@@ -282,22 +282,30 @@ __reExport(record_meta_exports, __toESM(require_record_meta_model()));
 __reExport(models_exports, field_exports);
 
 // src/models/record-data/record-data.column.ts
+var import_lodash = require("lodash");
 var import_sequelize_typescript = require("sequelize-typescript");
-var TableDataColumn = {
+var import_ulidx = require("ulidx");
+var RecordDataColumn = (fieldIDs) => ({
   id: {
     type: import_sequelize_typescript.DataType.STRING(26),
     primaryKey: true,
-    references: {
-      model: record_meta_exports.RecordMetaModel,
-      key: "id"
-    },
-    onDelete: "CASCADE",
-    onUpdate: "CASCADE"
+    validate: {
+      isValid(value) {
+        return (0, import_ulidx.isValid)(value);
+      }
+    }
   },
   deletedAt: {
     type: import_sequelize_typescript.DataType.DATE
-  }
-};
+  },
+  ...(0, import_lodash.transform)(
+    fieldIDs,
+    (memo, fieldID) => {
+      memo[fieldID] = { type: import_sequelize_typescript.DataType.JSON };
+    },
+    {}
+  )
+});
 
 // src/models/index.ts
 __reExport(models_exports, record_meta_exports);
@@ -350,7 +358,7 @@ var _connect = (dbName) => {
         throw error;
       }
     };
-    conn.addModels((0, import_lodash.values)(Models));
+    conn.addModels((0, import_lodash2.values)(Models));
     TABLE_CONNECTIONS[dbName] = conn;
     return conn;
   } catch (error) {
@@ -379,7 +387,7 @@ var _Repository = class {
   }
   /**
    * @param {ModelCtor} model?
-   * @returns {Promise<ModelCtor>}
+   * @returns {ModelType|Promise<ModelCtor>}
    */
   async _getModel(model) {
     return model ? this.connection.model(model) : await this._getRepository();
@@ -390,7 +398,7 @@ var _Repository = class {
    */
   async _getAll(options) {
     const result = await (await this._getRepository()).findAll(options);
-    return result instanceof import_sequelize_typescript3.Sequelize ? result?.map((d) => d.get({ plain: true })) : result;
+    return result?.map((d) => d instanceof import_sequelize.Model ? d.get({ plain: true }) : d);
   }
   /**
    * @param {Identifier} pk
@@ -399,7 +407,7 @@ var _Repository = class {
    */
   async _getByPk(pk, options) {
     const result = await (await this._getRepository()).findByPk(pk, options);
-    return result instanceof import_sequelize_typescript3.Sequelize ? result?.get({ plain: true }) : result;
+    return result instanceof import_sequelize.Model ? result?.get({ plain: true }) : result;
   }
   /**
    * @param {FindOptions} options?
@@ -407,11 +415,11 @@ var _Repository = class {
    */
   async _getOne(options) {
     const result = await (await this._getRepository()).findOne(options);
-    return result instanceof import_sequelize_typescript3.Sequelize ? result?.get({ plain: true }) : result;
+    return result instanceof import_sequelize.Model ? result?.get({ plain: true }) : result;
   }
   /**
    * @param {Partial<I>} data
-   * @param {CreateOptions} options
+   * @param {CreateOptions} options?
    * @returns {Promise<I>}
    */
   async _create(data, options) {
@@ -438,7 +446,7 @@ var _Repository = class {
   }
   /**
    * @param {Partial<I>} data
-   * @param {UpsertOptions} options
+   * @param {UpsertOptions} options?
    * @returns {Promise<I>}
    */
   async _upsert(data, options) {

@@ -13,7 +13,7 @@ export declare class _RecordMetaRepository extends _Repository<IRecordMetaModel>
     /**
      * Get record meta repository
      *
-     * @returns {Promise<IRepository<RecordMetaModel>>}
+     * @returns {IRepository<RecordMetaModel>}
      */
-    protected _getRepository(): Promise<IRepository<RecordMetaModel>>;
+    protected _getRepository(): IRepository<RecordMetaModel>;
 }

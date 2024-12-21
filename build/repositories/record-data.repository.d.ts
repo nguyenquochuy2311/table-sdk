@@ -1,27 +1,11 @@
-import type { Model, ModelCtor } from 'sequelize-typescript';
-import type { IRepository } from '../interfaces/sequelize.interface';
-import { type IRecordDataModel } from '../models';
-import { _Repository } from './_repository';
-export declare class _RecordDataRepository extends _Repository<IRecordDataModel> {
-    private tableID;
+import { _TableRepository } from './table.repository';
+export declare class _RecordDataRepository extends _TableRepository {
     /**
-     * Creates an instance of RecordDataRepository.
+     * Creates an instance of RecordRepository.
      *
      * @constructor
      * @param {string} workspaceID
-     * @param {string} rawTableID
+     * @param {string} tableID
      */
-    constructor(workspaceID: string, rawTableID: string);
-    /**
-     * Get record data repository
-     *
-     * @returns {Promise<IRepository<Model>>}
-     */
-    protected _getRepository(): Promise<IRepository<Model>>;
-    /**
-     * Check table is existed
-     *
-     * @returns {Promise<any>}
-     */
-    checkTableExisted(): Promise<ModelCtor | undefined>;
+    constructor(workspaceID: string, tableID: string);
 }

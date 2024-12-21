@@ -181,9 +181,9 @@ var require_record_meta_model = __commonJS({
     var tslib_1 = require("tslib");
     var sequelize_typescript_1 = require("sequelize-typescript");
     var ulidx_1 = require("ulidx");
-    var RecordMetaModel3 = class RecordMetaModel extends sequelize_typescript_1.Model {
+    var RecordMetaModel2 = class RecordMetaModel extends sequelize_typescript_1.Model {
     };
-    exports2.RecordMetaModel = RecordMetaModel3;
+    exports2.RecordMetaModel = RecordMetaModel2;
     tslib_1.__decorate([
       sequelize_typescript_1.PrimaryKey,
       (0, sequelize_typescript_1.Column)({
@@ -196,7 +196,7 @@ var require_record_meta_model = __commonJS({
         }
       }),
       tslib_1.__metadata("design:type", String)
-    ], RecordMetaModel3.prototype, "id", void 0);
+    ], RecordMetaModel2.prototype, "id", void 0);
     tslib_1.__decorate([
       (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING(26),
@@ -209,11 +209,11 @@ var require_record_meta_model = __commonJS({
       }),
       sequelize_typescript_1.Index,
       tslib_1.__metadata("design:type", String)
-    ], RecordMetaModel3.prototype, "tableID", void 0);
+    ], RecordMetaModel2.prototype, "tableID", void 0);
     tslib_1.__decorate([
       (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING }),
       tslib_1.__metadata("design:type", Object)
-    ], RecordMetaModel3.prototype, "name", void 0);
+    ], RecordMetaModel2.prototype, "name", void 0);
     tslib_1.__decorate([
       (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING(26),
@@ -224,29 +224,29 @@ var require_record_meta_model = __commonJS({
         }
       }),
       tslib_1.__metadata("design:type", Object)
-    ], RecordMetaModel3.prototype, "createdBy", void 0);
+    ], RecordMetaModel2.prototype, "createdBy", void 0);
     tslib_1.__decorate([
       sequelize_typescript_1.CreatedAt,
       (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
       tslib_1.__metadata("design:type", typeof (_a = typeof Date !== "undefined" && Date) === "function" ? _a : Object)
-    ], RecordMetaModel3.prototype, "createdAt", void 0);
+    ], RecordMetaModel2.prototype, "createdAt", void 0);
     tslib_1.__decorate([
       sequelize_typescript_1.UpdatedAt,
       (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
       tslib_1.__metadata("design:type", typeof (_b = typeof Date !== "undefined" && Date) === "function" ? _b : Object)
-    ], RecordMetaModel3.prototype, "updatedAt", void 0);
+    ], RecordMetaModel2.prototype, "updatedAt", void 0);
     tslib_1.__decorate([
       sequelize_typescript_1.DeletedAt,
       (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
       tslib_1.__metadata("design:type", Object)
-    ], RecordMetaModel3.prototype, "deletedAt", void 0);
-    exports2.RecordMetaModel = RecordMetaModel3 = tslib_1.__decorate([
+    ], RecordMetaModel2.prototype, "deletedAt", void 0);
+    exports2.RecordMetaModel = RecordMetaModel2 = tslib_1.__decorate([
       (0, sequelize_typescript_1.Table)({
         modelName: "recordMeta",
         tableName: "RecordMetas",
         paranoid: true
       })
-    ], RecordMetaModel3);
+    ], RecordMetaModel2);
   }
 });
 
@@ -257,7 +257,7 @@ __export(table_connection_exports, {
   initTableConnection: () => initTableConnection
 });
 module.exports = __toCommonJS(table_connection_exports);
-var import_lodash = require("lodash");
+var import_lodash2 = require("lodash");
 var import_promise = require("mysql2/promise");
 var import_sequelize_typescript2 = require("sequelize-typescript");
 
@@ -265,7 +265,7 @@ var import_sequelize_typescript2 = require("sequelize-typescript");
 var models_exports = {};
 __export(models_exports, {
   Models: () => Models,
-  TableDataColumn: () => TableDataColumn
+  RecordDataColumn: () => RecordDataColumn
 });
 
 // src/models/field/index.ts
@@ -280,22 +280,30 @@ __reExport(record_meta_exports, __toESM(require_record_meta_model()));
 __reExport(models_exports, field_exports);
 
 // src/models/record-data/record-data.column.ts
+var import_lodash = require("lodash");
 var import_sequelize_typescript = require("sequelize-typescript");
-var TableDataColumn = {
+var import_ulidx = require("ulidx");
+var RecordDataColumn = (fieldIDs) => ({
   id: {
     type: import_sequelize_typescript.DataType.STRING(26),
     primaryKey: true,
-    references: {
-      model: record_meta_exports.RecordMetaModel,
-      key: "id"
-    },
-    onDelete: "CASCADE",
-    onUpdate: "CASCADE"
+    validate: {
+      isValid(value) {
+        return (0, import_ulidx.isValid)(value);
+      }
+    }
   },
   deletedAt: {
     type: import_sequelize_typescript.DataType.DATE
-  }
-};
+  },
+  ...(0, import_lodash.transform)(
+    fieldIDs,
+    (memo, fieldID) => {
+      memo[fieldID] = { type: import_sequelize_typescript.DataType.JSON };
+    },
+    {}
+  )
+});
 
 // src/models/index.ts
 __reExport(models_exports, record_meta_exports);
@@ -348,7 +356,7 @@ var _connect = (dbName) => {
         throw error;
       }
     };
-    conn.addModels((0, import_lodash.values)(Models));
+    conn.addModels((0, import_lodash2.values)(Models));
     TABLE_CONNECTIONS[dbName] = conn;
     return conn;
   } catch (error) {
@@ -356,8 +364,7 @@ var _connect = (dbName) => {
   }
 };
 var initTableConnection = async (opts) => {
-  (0, import_lodash.assign)(DEFAULT_CONFIG, opts);
-  console.log({ DEFAULT_CONFIG, opts });
+  (0, import_lodash2.assign)(DEFAULT_CONFIG, opts);
   let connection;
   try {
     connection = await (0, import_promise.createConnection)({

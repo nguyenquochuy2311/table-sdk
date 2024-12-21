@@ -1,4 +1,4 @@
-import type { BulkCreateOptions, CreateOptions, DestroyOptions, FindOptions, Identifier, UpdateOptions, UpsertOptions, WhereOptions } from 'sequelize';
+import type { BulkCreateOptions, CreateOptions, DestroyOptions, FindOptions, Identifier, ModelType, UpdateOptions, UpsertOptions, WhereOptions } from 'sequelize';
 import { type Model, type ModelCtor } from 'sequelize-typescript';
 import type { IRepository, ISequelize } from '../interfaces/sequelize.interface';
 export declare abstract class _Repository<I> {
@@ -10,40 +10,40 @@ export declare abstract class _Repository<I> {
      * @param {string} workspaceID
      */
     constructor(workspaceID: string);
-    protected abstract _getRepository(): Promise<IRepository<Model>>;
+    protected abstract _getRepository(): IRepository<Model> | Promise<IRepository<Model>>;
     /**
      * @param {ModelCtor} model?
-     * @returns {Promise<ModelCtor>}
+     * @returns {ModelType|Promise<ModelCtor>}
      */
-    protected _getModel(model?: ModelCtor): Promise<ModelCtor>;
+    protected _getModel(model?: ModelCtor): Promise<ModelType>;
     /**
      * @param {FindOptions} options
      * @returns {Promise<I[]>}
      */
-    protected _getAll(options: FindOptions): Promise<I[]>;
+    protected _getAll(options?: FindOptions): Promise<I[]>;
     /**
      * @param {Identifier} pk
      * @param {FindOptions} options?
      * @returns {Promise<I | null>}
      */
-    protected _getByPk(pk: Identifier, options: FindOptions): Promise<I | null>;
+    protected _getByPk(pk: Identifier, options?: FindOptions): Promise<I | null>;
     /**
      * @param {FindOptions} options?
      * @returns {Promise<I | null>}
      */
-    protected _getOne(options: FindOptions): Promise<I | null>;
+    protected _getOne(options?: FindOptions): Promise<I | null>;
     /**
      * @param {Partial<I>} data
-     * @param {CreateOptions} options
+     * @param {CreateOptions} options?
      * @returns {Promise<I>}
      */
-    protected _create(data: Partial<I>, options: CreateOptions): Promise<I>;
+    protected _create(data: Partial<I>, options?: CreateOptions): Promise<I>;
     /**
      * @param {Partial<I>[]} data
      * @param {BulkCreateOptions} options?
      * @returns {Promise<I[]>}
      */
-    protected _bulkCreate(data: Partial<I>[], options: BulkCreateOptions): Promise<I[]>;
+    protected _bulkCreate(data: Partial<I>[], options?: BulkCreateOptions): Promise<I[]>;
     /**
      * @param {Partial<I>} data
      * @param {UpdateOptions} options
@@ -54,10 +54,10 @@ export declare abstract class _Repository<I> {
     }): Promise<[affectedCount: number]>;
     /**
      * @param {Partial<I>} data
-     * @param {UpsertOptions} options
+     * @param {UpsertOptions} options?
      * @returns {Promise<I>}
      */
-    protected _upsert(data: Partial<I>, options: UpsertOptions): Promise<I>;
+    protected _upsert(data: Partial<I>, options?: UpsertOptions): Promise<I>;
     /**
      * @param {DestroyOptions} options
      * @returns {Promise<number>}
