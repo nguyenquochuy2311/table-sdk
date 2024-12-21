@@ -1,3 +1,2 @@
-import type { ModelAttributeColumnOptions } from 'sequelize';
-import type { IRecordDataModel } from './record-data.interface';
-export declare const TableDataColumn: Record<keyof IRecordDataModel, ModelAttributeColumnOptions>;
+import type { Model, ModelAttributeColumnOptions } from 'sequelize';
+export declare const RecordDataColumn: (fieldIDs: string[]) => Record<string, ModelAttributeColumnOptions<Model<any, any>>>;

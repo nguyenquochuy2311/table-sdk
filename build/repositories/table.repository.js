@@ -250,14 +250,12 @@ var require_record_meta_model = __commonJS({
   }
 });
 
-// src/repositories/record-data.repository.ts
-var record_data_repository_exports = {};
-__export(record_data_repository_exports, {
-  _RecordDataRepository: () => _RecordDataRepository
-});
-module.exports = __toCommonJS(record_data_repository_exports);
-
 // src/repositories/table.repository.ts
+var table_repository_exports = {};
+__export(table_repository_exports, {
+  _TableRepository: () => _TableRepository
+});
+module.exports = __toCommonJS(table_repository_exports);
 var import_lodash3 = require("lodash");
 
 // src/models/index.ts
@@ -557,21 +555,7 @@ var _TableRepository = class extends _Repository {
     return this.connection.models[this.parseTableID];
   }
 };
-
-// src/repositories/record-data.repository.ts
-var _RecordDataRepository = class extends _TableRepository {
-  /**
-   * Creates an instance of RecordRepository.
-   *
-   * @constructor
-   * @param {string} workspaceID
-   * @param {string} tableID
-   */
-  constructor(workspaceID, tableID) {
-    super(workspaceID, tableID);
-  }
-};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  _RecordDataRepository
+  _TableRepository
 });

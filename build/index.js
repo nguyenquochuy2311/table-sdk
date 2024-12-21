@@ -494,38 +494,44 @@ __reExport(field_exports, __toESM(require_field_model()));
 // src/models/record-data/index.ts
 var record_data_exports = {};
 __export(record_data_exports, {
-  TableDataColumn: () => TableDataColumn
+  RecordDataColumn: () => RecordDataColumn
 });
 
 // src/models/record-data/record-data.column.ts
+var import_lodash = require("lodash");
 var import_sequelize_typescript = require("sequelize-typescript");
+var import_ulidx = require("ulidx");
+var RecordDataColumn = (fieldIDs) => ({
+  id: {
+    type: import_sequelize_typescript.DataType.STRING(26),
+    primaryKey: true,
+    validate: {
+      isValid(value) {
+        return (0, import_ulidx.isValid)(value);
+      }
+    }
+  },
+  deletedAt: {
+    type: import_sequelize_typescript.DataType.DATE
+  },
+  ...(0, import_lodash.transform)(
+    fieldIDs,
+    (memo, fieldID) => {
+      memo[fieldID] = { type: import_sequelize_typescript.DataType.JSON };
+    },
+    {}
+  )
+});
 
 // src/models/record-meta/index.ts
 var record_meta_exports = {};
 __reExport(record_meta_exports, __toESM(require_record_meta_model()));
 
-// src/models/record-data/record-data.column.ts
-var TableDataColumn = {
-  id: {
-    type: import_sequelize_typescript.DataType.STRING(26),
-    primaryKey: true,
-    references: {
-      model: record_meta_exports.RecordMetaModel,
-      key: "id"
-    },
-    onDelete: "CASCADE",
-    onUpdate: "CASCADE"
-  },
-  deletedAt: {
-    type: import_sequelize_typescript.DataType.DATE
-  }
-};
-
 // src/models/index.ts
 var models_exports = {};
 __export(models_exports, {
   Models: () => Models,
-  TableDataColumn: () => TableDataColumn
+  RecordDataColumn: () => RecordDataColumn
 });
 __reExport(models_exports, field_exports);
 __reExport(models_exports, record_meta_exports);
@@ -535,10 +541,10 @@ var Models = {
 };
 
 // src/repositories/_repository.ts
-var import_sequelize_typescript3 = require("sequelize-typescript");
+var import_sequelize = require("sequelize");
 
 // src/table-connection.ts
-var import_lodash = require("lodash");
+var import_lodash2 = require("lodash");
 var import_promise = require("mysql2/promise");
 var import_sequelize_typescript2 = require("sequelize-typescript");
 var TABLE_CONNECTIONS = {};
@@ -584,7 +590,7 @@ var _connect = (dbName) => {
         throw error;
       }
     };
-    conn.addModels((0, import_lodash.values)(Models));
+    conn.addModels((0, import_lodash2.values)(Models));
     TABLE_CONNECTIONS[dbName] = conn;
     return conn;
   } catch (error) {
@@ -592,8 +598,7 @@ var _connect = (dbName) => {
   }
 };
 var initTableConnection = async (opts) => {
-  (0, import_lodash.assign)(DEFAULT_CONFIG, opts);
-  console.log({ DEFAULT_CONFIG, opts });
+  (0, import_lodash2.assign)(DEFAULT_CONFIG, opts);
   let connection;
   try {
     connection = await (0, import_promise.createConnection)({
@@ -635,7 +640,7 @@ var _Repository = class {
   }
   /**
    * @param {ModelCtor} model?
-   * @returns {Promise<ModelCtor>}
+   * @returns {ModelType|Promise<ModelCtor>}
    */
   async _getModel(model) {
     return model ? this.connection.model(model) : await this._getRepository();
@@ -646,7 +651,7 @@ var _Repository = class {
    */
   async _getAll(options) {
     const result = await (await this._getRepository()).findAll(options);
-    return result instanceof import_sequelize_typescript3.Sequelize ? result?.map((d) => d.get({ plain: true })) : result;
+    return result?.map((d) => d instanceof import_sequelize.Model ? d.get({ plain: true }) : d);
   }
   /**
    * @param {Identifier} pk
@@ -655,7 +660,7 @@ var _Repository = class {
    */
   async _getByPk(pk, options) {
     const result = await (await this._getRepository()).findByPk(pk, options);
-    return result instanceof import_sequelize_typescript3.Sequelize ? result?.get({ plain: true }) : result;
+    return result instanceof import_sequelize.Model ? result?.get({ plain: true }) : result;
   }
   /**
    * @param {FindOptions} options?
@@ -663,11 +668,11 @@ var _Repository = class {
    */
   async _getOne(options) {
     const result = await (await this._getRepository()).findOne(options);
-    return result instanceof import_sequelize_typescript3.Sequelize ? result?.get({ plain: true }) : result;
+    return result instanceof import_sequelize.Model ? result?.get({ plain: true }) : result;
   }
   /**
    * @param {Partial<I>} data
-   * @param {CreateOptions} options
+   * @param {CreateOptions} options?
    * @returns {Promise<I>}
    */
   async _create(data, options) {
@@ -694,7 +699,7 @@ var _Repository = class {
   }
   /**
    * @param {Partial<I>} data
-   * @param {UpsertOptions} options
+   * @param {UpsertOptions} options?
    * @returns {Promise<I>}
    */
   async _upsert(data, options) {
@@ -728,35 +733,65 @@ var _FieldRepository = class extends _Repository {
    * @returns {Promise<IRepository<FieldModel>>}
    */
   _getRepository() {
-    return Promise.resolve(this.connection.getRepository(models_exports.FieldModel));
+    return this.connection.getRepository(models_exports.FieldModel);
   }
 };
 
-// src/repositories/record-data.repository.ts
-var import_lodash2 = require("lodash");
-var import_sequelize = require("sequelize");
-var import_ulidx = require("ulidx");
-var _RecordDataRepository = class extends _Repository {
+// src/repositories/table.repository.ts
+var import_lodash3 = require("lodash");
+var import_ulidx2 = require("ulidx");
+
+// src/utils/index.ts
+var parseTableID = (tableID) => `Table_${tableID}`;
+var catchError = async (promise) => {
+  return promise.then((data) => {
+    return [void 0, data];
+  }).catch((error) => {
+    return [error];
+  });
+};
+
+// src/repositories/table.repository.ts
+var _TableRepository = class extends _Repository {
   /**
-   * Creates an instance of RecordDataRepository.
+   * Creates an instance of TableRepository.
    *
    * @constructor
    * @param {string} workspaceID
-   * @param {string} rawTableID
+   * @param {string} tableID
    */
-  constructor(workspaceID, rawTableID) {
+  constructor(workspaceID, tableID) {
     super(workspaceID);
-    this.tableID = `Table_${rawTableID}`;
+    this.parseTableID = parseTableID(tableID);
   }
   /**
-   * Get record data repository
+   * Get repository
    *
+   * @protected
+   * @override
    * @returns {Promise<IRepository<Model>>}
    */
   async _getRepository() {
     const model = await this.checkTableExisted();
-    if (!model) throw new Error("Table not found");
+    if (!model) throw new Error("Table does not exist");
     return model;
+  }
+  /**
+   * Create table
+   *
+   * @param {string} primaryFieldID
+   * @returns {Promise<void>}
+   */
+  async createTable(primaryFieldID) {
+    let model;
+    try {
+      model = this._defineModel(RecordDataColumn([primaryFieldID]));
+      await model.sync();
+    } catch (error) {
+      delete this.connection.models[this.parseTableID];
+      model && await model.drop();
+      throw error;
+    }
   }
   /**
    * Check table is existed
@@ -764,42 +799,48 @@ var _RecordDataRepository = class extends _Repository {
    * @returns {Promise<any>}
    */
   async checkTableExisted() {
-    if (this.connection.isDefined(this.tableID)) {
-      return this.connection.model(this.tableID);
-    }
-    let attributes;
-    try {
-      attributes = await this.connection.getQueryInterface().describeTable(this.tableID);
-    } catch {
-      return;
-    }
-    const fieldAttributes = (0, import_lodash2.transform)(
-      attributes,
-      (memo, __, colName) => {
-        if ((0, import_ulidx.isValid)(colName)) {
-          memo[colName] = { type: import_sequelize.DataTypes.JSON };
-        }
-      },
-      {}
-    );
-    return this.connection.define(
-      this.tableID,
-      {
-        ...fieldAttributes,
-        ...TableDataColumn
-      },
-      {
-        modelName: this.tableID,
-        tableName: this.tableID,
-        paranoid: true,
-        timestamps: false,
-        indexes: [
-          {
-            fields: ["id", "deletedAt"]
-          }
-        ]
-      }
-    );
+    const tableModel = this.connection.models[this.parseTableID];
+    if (tableModel) return tableModel;
+    const [error, attributes] = await catchError(this.connection.getQueryInterface().describeTable(this.parseTableID));
+    if ((0, import_lodash3.startsWith)(error?.message, "No")) return;
+    const fieldIDs = (0, import_lodash3.reduce)(attributes, (res, __, colName) => (0, import_ulidx2.isValid)(colName) ? res.concat(colName) : res, []);
+    const fieldAttributes = RecordDataColumn(fieldIDs);
+    return this._defineModel(fieldAttributes);
+  }
+  /**
+   * Define model
+   *
+   * @param {Record<string, ModelAttributeColumnOptions<Model<any, any>>>} fieldAttributes
+   * @returns {ModelCtor}
+   */
+  _defineModel(fieldAttributes) {
+    this.connection.define(this.parseTableID, fieldAttributes, {
+      indexes: [{ name: "idx_deletedAt", fields: ["deletedAt"] }],
+      modelName: this.parseTableID,
+      tableName: this.parseTableID,
+      timestamps: false,
+      paranoid: true
+    });
+    this.connection.models[this.parseTableID].belongsTo(this.connection.getRepository(models_exports.RecordMetaModel), {
+      as: "recordMeta",
+      foreignKey: "id",
+      onDelete: "CASCADE"
+    });
+    return this.connection.models[this.parseTableID];
+  }
+};
+
+// src/repositories/record-data.repository.ts
+var _RecordDataRepository = class extends _TableRepository {
+  /**
+   * Creates an instance of RecordRepository.
+   *
+   * @constructor
+   * @param {string} workspaceID
+   * @param {string} tableID
+   */
+  constructor(workspaceID, tableID) {
+    super(workspaceID, tableID);
   }
 };
 
@@ -817,10 +858,10 @@ var _RecordMetaRepository = class extends _Repository {
   /**
    * Get record meta repository
    *
-   * @returns {Promise<IRepository<RecordMetaModel>>}
+   * @returns {IRepository<RecordMetaModel>}
    */
   _getRepository() {
-    return Promise.resolve(this.connection.getRepository(models_exports.RecordMetaModel));
+    return this.connection.getRepository(models_exports.RecordMetaModel);
   }
 };
 // Annotate the CommonJS export names for ESM import in node:

@@ -18,7 +18,7 @@ export class _FieldRepository extends _Repository<IFieldModel> {
 	 *
 	 * @returns {Promise<IRepository<FieldModel>>}
 	 */
-	protected override _getRepository(): Promise<IRepository<FieldModel>> {
-		return Promise.resolve(this.connection.getRepository(FieldModel));
+	protected override _getRepository(): IRepository<FieldModel> {
+		return this.connection.getRepository(FieldModel);
 	}
 }

@@ -17,37 +17,23 @@ var __copyProps = (to, from, except, desc) => {
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// src/models/record-data/record-data.column.ts
-var record_data_column_exports = {};
-__export(record_data_column_exports, {
-  RecordDataColumn: () => RecordDataColumn
+// src/utils/index.ts
+var utils_exports = {};
+__export(utils_exports, {
+  catchError: () => catchError,
+  parseTableID: () => parseTableID
 });
-module.exports = __toCommonJS(record_data_column_exports);
-var import_lodash = require("lodash");
-var import_sequelize_typescript = require("sequelize-typescript");
-var import_ulidx = require("ulidx");
-var RecordDataColumn = (fieldIDs) => ({
-  id: {
-    type: import_sequelize_typescript.DataType.STRING(26),
-    primaryKey: true,
-    validate: {
-      isValid(value) {
-        return (0, import_ulidx.isValid)(value);
-      }
-    }
-  },
-  deletedAt: {
-    type: import_sequelize_typescript.DataType.DATE
-  },
-  ...(0, import_lodash.transform)(
-    fieldIDs,
-    (memo, fieldID) => {
-      memo[fieldID] = { type: import_sequelize_typescript.DataType.JSON };
-    },
-    {}
-  )
-});
+module.exports = __toCommonJS(utils_exports);
+var parseTableID = (tableID) => `Table_${tableID}`;
+var catchError = async (promise) => {
+  return promise.then((data) => {
+    return [void 0, data];
+  }).catch((error) => {
+    return [error];
+  });
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  RecordDataColumn
+  catchError,
+  parseTableID
 });

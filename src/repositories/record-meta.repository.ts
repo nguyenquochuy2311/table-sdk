@@ -17,9 +17,9 @@ export class _RecordMetaRepository extends _Repository<IRecordMetaModel> {
 	/**
 	 * Get record meta repository
 	 *
-	 * @returns {Promise<IRepository<RecordMetaModel>>}
+	 * @returns {IRepository<RecordMetaModel>}
 	 */
-	protected override _getRepository(): Promise<IRepository<RecordMetaModel>> {
-		return Promise.resolve(this.connection.getRepository(RecordMetaModel));
+	protected override _getRepository(): IRepository<RecordMetaModel> {
+		return this.connection.getRepository(RecordMetaModel);
 	}
 }

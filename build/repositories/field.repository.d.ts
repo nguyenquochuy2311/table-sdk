@@ -14,5 +14,5 @@ export declare class _FieldRepository extends _Repository<IFieldModel> {
      *
      * @returns {Promise<IRepository<FieldModel>>}
      */
-    protected _getRepository(): Promise<IRepository<FieldModel>>;
+    protected _getRepository(): IRepository<FieldModel>;
 }

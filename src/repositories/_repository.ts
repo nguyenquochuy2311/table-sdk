@@ -4,13 +4,15 @@ import type {
 	DestroyOptions,
 	FindOptions,
 	Identifier,
+	ModelType,
 	UpdateOptions,
 	UpsertOptions,
 	WhereOptions,
 } from 'sequelize';
-import { Sequelize, type Model, type ModelCtor } from 'sequelize-typescript';
+import { Model as _Model } from 'sequelize';
+import { type Model, type ModelCtor } from 'sequelize-typescript';
+import { getTableConnection } from 'table-connection';
 import type { IRepository, ISequelize } from '../interfaces/sequelize.interface';
-import { getTableConnection } from '../table-connection';
 
 export abstract class _Repository<I> {
 	protected connection: ISequelize;
@@ -25,13 +27,13 @@ export abstract class _Repository<I> {
 		this.connection = getTableConnection(workspaceID);
 	}
 
-	protected abstract _getRepository(): Promise<IRepository<Model>>;
+	protected abstract _getRepository(): IRepository<Model> | Promise<IRepository<Model>>;
 
 	/**
 	 * @param {ModelCtor} model?
-	 * @returns {Promise<ModelCtor>}
+	 * @returns {ModelType|Promise<ModelCtor>}
 	 */
-	protected async _getModel(model?: ModelCtor): Promise<ModelCtor> {
+	protected async _getModel(model?: ModelCtor): Promise<ModelType> {
 		return model ? this.connection.model(model) : await this._getRepository();
 	}
 
@@ -39,10 +41,10 @@ export abstract class _Repository<I> {
 	 * @param {FindOptions} options
 	 * @returns {Promise<I[]>}
 	 */
-	protected async _getAll(options: FindOptions): Promise<I[]> {
+	protected async _getAll(options?: FindOptions): Promise<I[]> {
 		const result = await (await this._getRepository()).findAll(options);
 
-		return result instanceof Sequelize ? result?.map((d: Model): I => d.get({ plain: true })) : (result as unknown as I[]);
+		return result?.map((d: Model): I => (d instanceof _Model ? d.get({ plain: true }) : d));
 	}
 
 	/**
@@ -50,28 +52,28 @@ export abstract class _Repository<I> {
 	 * @param {FindOptions} options?
 	 * @returns {Promise<I | null>}
 	 */
-	protected async _getByPk(pk: Identifier, options: FindOptions): Promise<I | null> {
+	protected async _getByPk(pk: Identifier, options?: FindOptions): Promise<I | null> {
 		const result = await (await this._getRepository()).findByPk(pk, options);
 
-		return result instanceof Sequelize ? result?.get({ plain: true }) : (result as I);
+		return result instanceof _Model ? result?.get({ plain: true }) : (result as I);
 	}
 
 	/**
 	 * @param {FindOptions} options?
 	 * @returns {Promise<I | null>}
 	 */
-	protected async _getOne(options: FindOptions): Promise<I | null> {
+	protected async _getOne(options?: FindOptions): Promise<I | null> {
 		const result = await (await this._getRepository()).findOne(options);
 
-		return result instanceof Sequelize ? result?.get({ plain: true }) : (result as I);
+		return result instanceof _Model ? result?.get({ plain: true }) : (result as I);
 	}
 
 	/**
 	 * @param {Partial<I>} data
-	 * @param {CreateOptions} options
+	 * @param {CreateOptions} options?
 	 * @returns {Promise<I>}
 	 */
-	protected async _create(data: Partial<I>, options: CreateOptions): Promise<I> {
+	protected async _create(data: Partial<I>, options?: CreateOptions): Promise<I> {
 		const result = await (await this._getRepository()).create(data, options);
 
 		return result?.get({ plain: true });
@@ -82,7 +84,7 @@ export abstract class _Repository<I> {
 	 * @param {BulkCreateOptions} options?
 	 * @returns {Promise<I[]>}
 	 */
-	protected async _bulkCreate(data: Partial<I>[], options: BulkCreateOptions): Promise<I[]> {
+	protected async _bulkCreate(data: Partial<I>[], options?: BulkCreateOptions): Promise<I[]> {
 		const result = await (await this._getRepository()).bulkCreate(data, options);
 
 		return result?.map((d: Model): I => d.get({ plain: true }));
@@ -101,10 +103,10 @@ export abstract class _Repository<I> {
 
 	/**
 	 * @param {Partial<I>} data
-	 * @param {UpsertOptions} options
+	 * @param {UpsertOptions} options?
 	 * @returns {Promise<I>}
 	 */
-	protected async _upsert(data: Partial<I>, options: UpsertOptions): Promise<I> {
+	protected async _upsert(data: Partial<I>, options?: UpsertOptions): Promise<I> {
 		const [result] = await (await this._getRepository()).upsert(data, options);
 
 		return result?.get({ plain: true });

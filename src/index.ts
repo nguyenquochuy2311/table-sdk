@@ -20,12 +20,3 @@ export {
 	getTableConnection,
 	initTableConnection,
 };
-
-// (async () => {
-// 	await initTableConnection({
-// 		host: 'gateway01.ap-southeast-1.prod.aws.tidbcloud.com',
-// 		port: 4000,
-// 		username: '2Z7PR4TFY5WeFhZ.root',
-// 		password: 'YYgszGfEEXA3QbCT',
-// 	});
-// })();
