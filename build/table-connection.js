@@ -357,6 +357,7 @@ var _connect = (dbName) => {
 };
 var initTableConnection = async (opts) => {
   (0, import_lodash.assign)(DEFAULT_CONFIG, opts);
+  console.log({ DEFAULT_CONFIG, opts });
   let connection;
   try {
     connection = await (0, import_promise.createConnection)({
