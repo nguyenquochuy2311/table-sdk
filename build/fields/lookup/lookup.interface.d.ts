@@ -85,8 +85,8 @@ export declare const conditionLookupValidator: z.ZodObject<{
     fieldID: string;
     order: number;
     type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
-    id?: string | undefined;
     operator?: CONDITION_OPERATOR | undefined;
+    id?: string | undefined;
     data?: any;
     field?: any;
     error?: any;
@@ -94,8 +94,8 @@ export declare const conditionLookupValidator: z.ZodObject<{
     fieldID: string;
     order: number;
     type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
-    id?: string | undefined;
     operator?: CONDITION_OPERATOR | undefined;
+    id?: string | undefined;
     data?: any;
     field?: any;
     error?: any;
@@ -128,8 +128,8 @@ export declare const FieldLookupParamsValidator: z.ZodObject<{
                 fieldID: string;
                 order: number;
                 type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
-                id?: string | undefined;
                 operator?: CONDITION_OPERATOR | undefined;
+                id?: string | undefined;
                 data?: any;
                 field?: any;
                 error?: any;
@@ -137,8 +137,8 @@ export declare const FieldLookupParamsValidator: z.ZodObject<{
                 fieldID: string;
                 order: number;
                 type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
-                id?: string | undefined;
                 operator?: CONDITION_OPERATOR | undefined;
+                id?: string | undefined;
                 data?: any;
                 field?: any;
                 error?: any;
@@ -156,8 +156,8 @@ export declare const FieldLookupParamsValidator: z.ZodObject<{
                 fieldID: string;
                 order: number;
                 type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
-                id?: string | undefined;
                 operator?: CONDITION_OPERATOR | undefined;
+                id?: string | undefined;
                 data?: any;
                 field?: any;
                 error?: any;
@@ -165,8 +165,8 @@ export declare const FieldLookupParamsValidator: z.ZodObject<{
                 fieldID: string;
                 order: number;
                 type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
-                id?: string | undefined;
                 operator?: CONDITION_OPERATOR | undefined;
+                id?: string | undefined;
                 data?: any;
                 field?: any;
                 error?: any;
@@ -178,8 +178,8 @@ export declare const FieldLookupParamsValidator: z.ZodObject<{
                 fieldID: string;
                 order: number;
                 type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
-                id?: string | undefined;
                 operator?: CONDITION_OPERATOR | undefined;
+                id?: string | undefined;
                 data?: any;
                 field?: any;
                 error?: any;
@@ -192,8 +192,8 @@ export declare const FieldLookupParamsValidator: z.ZodObject<{
                 fieldID: string;
                 order: number;
                 type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
-                id?: string | undefined;
                 operator?: CONDITION_OPERATOR | undefined;
+                id?: string | undefined;
                 data?: any;
                 field?: any;
                 error?: any;
@@ -213,8 +213,8 @@ export declare const FieldLookupParamsValidator: z.ZodObject<{
                 fieldID: string;
                 order: number;
                 type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
-                id?: string | undefined;
                 operator?: CONDITION_OPERATOR | undefined;
+                id?: string | undefined;
                 data?: any;
                 field?: any;
                 error?: any;
@@ -234,8 +234,8 @@ export declare const FieldLookupParamsValidator: z.ZodObject<{
                 fieldID: string;
                 order: number;
                 type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
-                id?: string | undefined;
                 operator?: CONDITION_OPERATOR | undefined;
+                id?: string | undefined;
                 data?: any;
                 field?: any;
                 error?: any;
@@ -263,8 +263,8 @@ export declare const FieldLookupParamsValidator: z.ZodObject<{
                 fieldID: string;
                 order: number;
                 type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
-                id?: string | undefined;
                 operator?: CONDITION_OPERATOR | undefined;
+                id?: string | undefined;
                 data?: any;
                 field?: any;
                 error?: any;
@@ -286,8 +286,8 @@ export declare const FieldLookupParamsValidator: z.ZodObject<{
                 fieldID: string;
                 order: number;
                 type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
-                id?: string | undefined;
                 operator?: CONDITION_OPERATOR | undefined;
+                id?: string | undefined;
                 data?: any;
                 field?: any;
                 error?: any;

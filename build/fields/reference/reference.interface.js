@@ -1,30 +1,64 @@
 "use strict";
-import { z } from "zod";
-export var FieldReferenceTwoWayLinkUpdateMode = /* @__PURE__ */ ((FieldReferenceTwoWayLinkUpdateMode2) => {
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// src/fields/reference/reference.interface.ts
+var reference_interface_exports = {};
+__export(reference_interface_exports, {
+  FieldReferenceDataValidator: () => FieldReferenceDataValidator,
+  FieldReferenceInitialDataValidator: () => FieldReferenceInitialDataValidator,
+  FieldReferenceParamsValidator: () => FieldReferenceParamsValidator,
+  FieldReferenceTwoWayLinkUpdateMode: () => FieldReferenceTwoWayLinkUpdateMode
+});
+module.exports = __toCommonJS(reference_interface_exports);
+var import_zod = require("zod");
+var FieldReferenceTwoWayLinkUpdateMode = /* @__PURE__ */ ((FieldReferenceTwoWayLinkUpdateMode2) => {
   FieldReferenceTwoWayLinkUpdateMode2[FieldReferenceTwoWayLinkUpdateMode2["CONVERT_ONE_WAY"] = 1] = "CONVERT_ONE_WAY";
   FieldReferenceTwoWayLinkUpdateMode2[FieldReferenceTwoWayLinkUpdateMode2["DELETE_REFERENCE"] = 2] = "DELETE_REFERENCE";
   return FieldReferenceTwoWayLinkUpdateMode2;
 })(FieldReferenceTwoWayLinkUpdateMode || {});
-export const FieldReferenceInitialDataValidator = z.object({
-  value: z.array(z.string().ulid()).min(0),
-  selected: z.array(
-    z.object({
-      id: z.string().ulid(),
-      name: z.any()
+var FieldReferenceInitialDataValidator = import_zod.z.object({
+  value: import_zod.z.array(import_zod.z.string().ulid()).min(0),
+  selected: import_zod.z.array(
+    import_zod.z.object({
+      id: import_zod.z.string().ulid(),
+      name: import_zod.z.any()
     })
   ).min(0).optional()
 }).nullable().default(null);
-const ReferenceTwoWayLinkValidator = z.object({
-  sourceReferenceID: z.string().ulid().optional(),
-  updateMode: z.nativeEnum(FieldReferenceTwoWayLinkUpdateMode).optional(),
-  isKeepTwoWay: z.boolean().optional()
+var ReferenceTwoWayLinkValidator = import_zod.z.object({
+  sourceReferenceID: import_zod.z.string().ulid().optional(),
+  updateMode: import_zod.z.nativeEnum(FieldReferenceTwoWayLinkUpdateMode).optional(),
+  isKeepTwoWay: import_zod.z.boolean().optional()
 }).nullable().optional();
-export const FieldReferenceParamsValidator = z.object({
-  isMultipleSelect: z.boolean(),
-  reference: z.object({
-    boardID: z.string().ulid(),
-    viewID: z.string().ulid().nullable().optional()
+var FieldReferenceParamsValidator = import_zod.z.object({
+  isMultipleSelect: import_zod.z.boolean(),
+  reference: import_zod.z.object({
+    boardID: import_zod.z.string().ulid(),
+    viewID: import_zod.z.string().ulid().nullable().optional()
   }),
   twoWayLink: ReferenceTwoWayLinkValidator
 });
-export const FieldReferenceDataValidator = FieldReferenceInitialDataValidator;
+var FieldReferenceDataValidator = FieldReferenceInitialDataValidator;
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  FieldReferenceDataValidator,
+  FieldReferenceInitialDataValidator,
+  FieldReferenceParamsValidator,
+  FieldReferenceTwoWayLinkUpdateMode
+});

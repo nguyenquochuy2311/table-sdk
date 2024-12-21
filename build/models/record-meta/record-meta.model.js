@@ -1,11 +1,14 @@
 "use strict";
-var _a, _b, _c;
+
+// src/models/record-meta/record-meta.model.ts
+var _a;
+var _b;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RecordMetaModel = void 0;
-const tslib_1 = require("tslib");
-const sequelize_typescript_1 = require("sequelize-typescript");
-const ulidx_1 = require("ulidx");
-let RecordMetaModel = class RecordMetaModel2 extends sequelize_typescript_1.Model {
+var tslib_1 = require("tslib");
+var sequelize_typescript_1 = require("sequelize-typescript");
+var ulidx_1 = require("ulidx");
+var RecordMetaModel = class RecordMetaModel2 extends sequelize_typescript_1.Model {
 };
 exports.RecordMetaModel = RecordMetaModel;
 tslib_1.__decorate([

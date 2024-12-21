@@ -1,5 +1,29 @@
 "use strict";
-export const FieldDataType = {
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// src/field-datatype.ts
+var field_datatype_exports = {};
+__export(field_datatype_exports, {
+  FieldDataType: () => FieldDataType
+});
+module.exports = __toCommonJS(field_datatype_exports);
+var FieldDataType = {
   TEXT: 1,
   CHECKBOX: 2,
   PARAGRAPH: 3,
@@ -23,3 +47,7 @@ export const FieldDataType = {
   CREATED_TIME: 22,
   AUTO_NUMBER: 23
 };
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  FieldDataType
+});
