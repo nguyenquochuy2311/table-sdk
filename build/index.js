@@ -822,16 +822,6 @@ var _RecordMetaRepository = class extends _Repository {
     return Promise.resolve(this.connection.getRepository(models_exports.RecordMetaModel));
   }
 };
-
-// src/index.ts
-(async () => {
-  await initTableConnection({
-    host: "gateway01.ap-southeast-1.prod.aws.tidbcloud.com",
-    port: 4e3,
-    username: "2Z7PR4TFY5WeFhZ.root",
-    password: "YYgszGfEEXA3QbCT"
-  });
-})();
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   FieldDataType,
