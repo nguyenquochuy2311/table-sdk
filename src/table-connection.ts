@@ -80,6 +80,8 @@ const initTableConnection = async (
 ): Promise<void> => {
 	assign(DEFAULT_CONFIG, opts);
 
+	console.log({ DEFAULT_CONFIG, opts });
+
 	let connection!: Connection;
 
 	try {
