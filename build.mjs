@@ -1,8 +1,8 @@
 import { esbuildDecorators } from '@anatine/esbuild-decorators';
-import { build } from 'esbuild';
+import * as esbuild from 'esbuild';
 
-await build({
-	entryPoints: ['src/**/*.ts'],
+await esbuild.build({
+	entryPoints: ['src/index.ts'],
 	bundle: true,
 	outdir: 'dist',
 	platform: 'node',

@@ -2,7 +2,7 @@ import type { IRepository } from '../interfaces/sequelize.interface';
 import { FieldModel, type IFieldModel } from '../models';
 import { _Repository } from './_repository';
 
-export class _FieldRepository extends _Repository<FieldModel, IFieldModel> {
+export class _FieldRepository extends _Repository<IFieldModel> {
 	/**
 	 * Creates an instance of FieldRepository.
 	 *

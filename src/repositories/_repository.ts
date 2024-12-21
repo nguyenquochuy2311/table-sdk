@@ -12,7 +12,7 @@ import { Sequelize, type Model, type ModelCtor } from 'sequelize-typescript';
 import type { IRepository, ISequelize } from '../interfaces/sequelize.interface';
 import { getTableConnection } from '../table-connection';
 
-export abstract class _Repository<M extends Model, I> {
+export abstract class _Repository<I> {
 	protected connection: ISequelize;
 
 	/**
@@ -25,7 +25,7 @@ export abstract class _Repository<M extends Model, I> {
 		this.connection = getTableConnection(workspaceID);
 	}
 
-	protected abstract _getRepository(): Promise<IRepository<M>>;
+	protected abstract _getRepository(): Promise<IRepository<Model>>;
 
 	/**
 	 * @param {ModelCtor} model?
@@ -72,7 +72,7 @@ export abstract class _Repository<M extends Model, I> {
 	 * @returns {Promise<I>}
 	 */
 	protected async _create(data: Partial<I>, options: CreateOptions): Promise<I> {
-		const result = await (await this._getRepository()).create(data as M['_creationAttributes'], options);
+		const result = await (await this._getRepository()).create(data, options);
 
 		return result?.get({ plain: true });
 	}
@@ -83,7 +83,7 @@ export abstract class _Repository<M extends Model, I> {
 	 * @returns {Promise<I[]>}
 	 */
 	protected async _bulkCreate(data: Partial<I>[], options: BulkCreateOptions): Promise<I[]> {
-		const result = await (await this._getRepository()).bulkCreate(data as M['_creationAttributes'], options);
+		const result = await (await this._getRepository()).bulkCreate(data, options);
 
 		return result?.map((d: Model): I => d.get({ plain: true }));
 	}
@@ -105,7 +105,7 @@ export abstract class _Repository<M extends Model, I> {
 	 * @returns {Promise<I>}
 	 */
 	protected async _upsert(data: Partial<I>, options: UpsertOptions): Promise<I> {
-		const [result] = await (await this._getRepository()).upsert(data as M['_creationAttributes'], options);
+		const [result] = await (await this._getRepository()).upsert(data, options);
 
 		return result?.get({ plain: true });
 	}

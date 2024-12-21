@@ -1,12 +1,15 @@
 {
 	"name": "cubable-table-sdk",
 	"version": "1.0.0",
-	"description": "cubable sdk",
+	"description": "cubable table sdk",
 	"license": "ISC",
-	"type": "module",
+	"main": "dist/index.ts",
 	"scripts": {
 		"lint": "tsc --noEmit && eslint src --ext .js,.ts",
-		"build": "bun lint && bun build.mjs"
+		"lint:fix": "eslint src --ext .ts --fix",
+		"build": "bun lint && bun build.mjs",
+		"dev": "bun src/index.ts",
+		"serve": "bun run build && bun dist/index.js"
 	},
 	"dependencies": {
 		"ajv": "^8.17.1",

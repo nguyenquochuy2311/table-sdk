@@ -7,7 +7,7 @@ import type { IRepository } from '../interfaces/sequelize.interface';
 import { TableDataColumn, type IRecordDataModel } from '../models';
 import { _Repository } from './_repository';
 
-export class _RecordDataRepository extends _Repository<Model, IRecordDataModel> {
+export class _RecordDataRepository extends _Repository<IRecordDataModel> {
 	private tableID: string;
 
 	/**

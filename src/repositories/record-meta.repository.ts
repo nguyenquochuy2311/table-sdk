@@ -3,7 +3,7 @@ import type { IRecordMetaModel } from '../models';
 import { RecordMetaModel } from '../models';
 import { _Repository } from './_repository';
 
-export class _RecordMetaRepository extends _Repository<RecordMetaModel, IRecordMetaModel> {
+export class _RecordMetaRepository extends _Repository<IRecordMetaModel> {
 	/**
 	 * Creates an instance of RecordMetaRepository.
 	 *
