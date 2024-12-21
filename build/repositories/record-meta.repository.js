@@ -110,6 +110,7 @@ var require_field_model = __commonJS({
           }
         }
       }),
+      sequelize_typescript_1.Index,
       tslib_1.__metadata("design:type", String)
     ], FieldModel2.prototype, "tableID", void 0);
     tslib_1.__decorate([
@@ -156,8 +157,8 @@ var require_field_model = __commonJS({
     ], FieldModel2.prototype, "updatedAt", void 0);
     tslib_1.__decorate([
       sequelize_typescript_1.DeletedAt,
-      sequelize_typescript_1.Index,
       (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
+      sequelize_typescript_1.Index,
       tslib_1.__metadata("design:type", Object)
     ], FieldModel2.prototype, "deletedAt", void 0);
     exports2.FieldModel = FieldModel2 = tslib_1.__decorate([
@@ -238,6 +239,7 @@ var require_record_meta_model = __commonJS({
     tslib_1.__decorate([
       sequelize_typescript_1.DeletedAt,
       (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
+      sequelize_typescript_1.Index,
       tslib_1.__metadata("design:type", Object)
     ], RecordMetaModel3.prototype, "deletedAt", void 0);
     exports2.RecordMetaModel = RecordMetaModel3 = tslib_1.__decorate([

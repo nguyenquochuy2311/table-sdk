@@ -33,6 +33,7 @@ export class FieldModel extends Model implements IFieldModel {
 			},
 		},
 	})
+	@Index
 	declare tableID: string;
 
 	@Column({ type: DataType.STRING, allowNull: false })
@@ -68,7 +69,7 @@ export class FieldModel extends Model implements IFieldModel {
 	declare updatedAt: Date;
 
 	@DeletedAt
-	@Index
 	@Column({ type: DataType.DATE })
+	@Index
 	declare deletedAt: Date | null;
 }

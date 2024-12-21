@@ -65,6 +65,7 @@ tslib_1.__decorate([
 tslib_1.__decorate([
   sequelize_typescript_1.DeletedAt,
   (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
+  sequelize_typescript_1.Index,
   tslib_1.__metadata("design:type", Object)
 ], RecordMetaModel.prototype, "deletedAt", void 0);
 exports.RecordMetaModel = RecordMetaModel = tslib_1.__decorate([

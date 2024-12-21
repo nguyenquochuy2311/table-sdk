@@ -55,5 +55,6 @@ export class RecordMetaModel extends Model implements IRecordMetaModel {
 
 	@DeletedAt
 	@Column({ type: DataType.DATE })
+	@Index
 	declare deletedAt: Date | null;
 }
