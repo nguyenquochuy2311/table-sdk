@@ -3,8 +3,8 @@
 	"version": "1.0.0",
 	"description": "cubable table sdk",
 	"license": "ISC",
-	"main": "dist/index.js",
-	"types": "dist/index.d.ts",
+	"main": "build/index.js",
+	"types": "build/index.d.ts",
 	"scripts": {
 		"lint": "tsc --noEmit && eslint src --ext .js,.ts",
 		"lint:fix": "eslint src --ext .ts --fix",

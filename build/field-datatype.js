@@ -1,0 +1,25 @@
+"use strict";
+export const FieldDataType = {
+  TEXT: 1,
+  CHECKBOX: 2,
+  PARAGRAPH: 3,
+  ATTACHMENT: 4,
+  DROPDOWN: 5,
+  NUMBER: 6,
+  DATE: 7,
+  PHONE: 8,
+  WEBSITE: 9,
+  EMAIL: 10,
+  CURRENCY: 11,
+  PEOPLE: 12,
+  RATING: 13,
+  PROGRESS: 14,
+  REFERENCE: 15,
+  FORMULA: 16,
+  LOOKUP: 18,
+  LAST_MODIFIED_BY: 19,
+  LAST_MODIFIED_TIME: 20,
+  CREATED_BY: 21,
+  CREATED_TIME: 22,
+  AUTO_NUMBER: 23
+};
