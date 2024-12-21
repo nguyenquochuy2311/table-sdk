@@ -110,6 +110,7 @@ var require_field_model = __commonJS({
           }
         }
       }),
+      sequelize_typescript_1.Index,
       tslib_1.__metadata("design:type", String)
     ], FieldModel3.prototype, "tableID", void 0);
     tslib_1.__decorate([
@@ -156,8 +157,8 @@ var require_field_model = __commonJS({
     ], FieldModel3.prototype, "updatedAt", void 0);
     tslib_1.__decorate([
       sequelize_typescript_1.DeletedAt,
-      sequelize_typescript_1.Index,
       (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
+      sequelize_typescript_1.Index,
       tslib_1.__metadata("design:type", Object)
     ], FieldModel3.prototype, "deletedAt", void 0);
     exports2.FieldModel = FieldModel3 = tslib_1.__decorate([
@@ -238,6 +239,7 @@ var require_record_meta_model = __commonJS({
     tslib_1.__decorate([
       sequelize_typescript_1.DeletedAt,
       (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
+      sequelize_typescript_1.Index,
       tslib_1.__metadata("design:type", Object)
     ], RecordMetaModel4.prototype, "deletedAt", void 0);
     exports2.RecordMetaModel = RecordMetaModel4 = tslib_1.__decorate([
@@ -773,25 +775,10 @@ var _TableRepository = class extends _Repository {
    */
   async _getRepository() {
     const model = await this.checkTableExisted();
-    if (!model) throw new Error("Table does not exist");
-    return model;
-  }
-  /**
-   * Create table
-   *
-   * @param {string} primaryFieldID
-   * @returns {Promise<void>}
-   */
-  async createTable(primaryFieldID) {
-    let model;
-    try {
-      model = this._defineModel(RecordDataColumn([primaryFieldID]));
-      await model.sync();
-    } catch (error) {
-      delete this.connection.models[this.parseTableID];
-      model && await model.drop();
-      throw error;
+    if (!model) {
+      throw new Error("Table not existed");
     }
+    return model;
   }
   /**
    * Check table is existed

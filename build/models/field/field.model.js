@@ -93,6 +93,7 @@ tslib_1.__decorate([
       }
     }
   }),
+  sequelize_typescript_1.Index,
   tslib_1.__metadata("design:type", String)
 ], FieldModel.prototype, "tableID", void 0);
 tslib_1.__decorate([
@@ -139,8 +140,8 @@ tslib_1.__decorate([
 ], FieldModel.prototype, "updatedAt", void 0);
 tslib_1.__decorate([
   sequelize_typescript_1.DeletedAt,
-  sequelize_typescript_1.Index,
   (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
+  sequelize_typescript_1.Index,
   tslib_1.__metadata("design:type", Object)
 ], FieldModel.prototype, "deletedAt", void 0);
 exports.FieldModel = FieldModel = tslib_1.__decorate([

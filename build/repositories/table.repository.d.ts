@@ -21,13 +21,6 @@ export declare class _TableRepository extends _Repository<IRecordDataModel> {
      */
     protected _getRepository(): Promise<IRepository<Model>>;
     /**
-     * Create table
-     *
-     * @param {string} primaryFieldID
-     * @returns {Promise<void>}
-     */
-    createTable(primaryFieldID: string): Promise<void>;
-    /**
      * Check table is existed
      *
      * @returns {Promise<any>}
