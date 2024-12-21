@@ -42,16 +42,16 @@ const _connect = (dbName: string): ISequelize => {
 		};
 
 		// Declare create transaction fn
-		conn.createTransaction = async function (options = undefined, callBack = undefined): Promise<ITransaction> {
+		conn.createTransaction = async function (options: any = undefined, callBack: any = undefined): Promise<ITransaction> {
 			try {
 				const transaction = (await this.transaction(options, callBack)) as ITransaction;
 
-				transaction.safeCommit = function (): Promise<void> {
-					return this.finished !== 'commit' && this.finished !== 'rollback' && this.commit();
+				transaction.safeCommit = async function (): Promise<void> {
+					return this.finished !== 'commit' && this.finished !== 'rollback' ? await this.commit() : undefined;
 				};
 
-				transaction.safeRollback = function (): Promise<void> {
-					return this.finished !== 'commit' && this.finished !== 'rollback' && this.rollback();
+				transaction.safeRollback = async function (): Promise<void> {
+					return this.finished !== 'commit' && this.finished !== 'rollback' ? await this.rollback() : undefined;
 				};
 
 				return transaction;

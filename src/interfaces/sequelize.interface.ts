@@ -2,6 +2,7 @@ import type { Model, Transaction } from 'sequelize';
 import type { Repository, Sequelize } from 'sequelize-typescript';
 
 export interface ITransaction extends Transaction {
+	finished: string;
 	safeCommit(): Promise<void>;
 	safeRollback(): Promise<void>;
 }
