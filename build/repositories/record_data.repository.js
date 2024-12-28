@@ -314,7 +314,7 @@ var Models = {
 var import_ulidx2 = require("ulidx");
 
 // src/utils/index.ts
-var parseTableID = (tableID) => `Table_${tableID}`;
+var parseTableID = (tableID) => `RecordData_${tableID}`;
 var catchError = async (promise) => {
   return promise.then((data) => {
     return [void 0, data];

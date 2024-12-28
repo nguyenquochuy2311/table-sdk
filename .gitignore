@@ -139,4 +139,3 @@ dist
 .husky/
 
 bun.lockb
-src/

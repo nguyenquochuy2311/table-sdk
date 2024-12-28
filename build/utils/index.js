@@ -24,7 +24,7 @@ __export(utils_exports, {
   parseTableID: () => parseTableID
 });
 module.exports = __toCommonJS(utils_exports);
-var parseTableID = (tableID) => `Table_${tableID}`;
+var parseTableID = (tableID) => `RecordData_${tableID}`;
 var catchError = async (promise) => {
   return promise.then((data) => {
     return [void 0, data];
