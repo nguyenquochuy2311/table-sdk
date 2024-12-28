@@ -38,6 +38,14 @@ var RecordDataColumn = (fieldIDs) => ({
       }
     }
   },
+  createdAt: {
+    type: import_sequelize_typescript.DataType.DATE,
+    allowNull: false
+  },
+  updatedAt: {
+    type: import_sequelize_typescript.DataType.DATE,
+    allowNull: false
+  },
   deletedAt: {
     type: import_sequelize_typescript.DataType.DATE
   },

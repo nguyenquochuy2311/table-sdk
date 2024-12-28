@@ -10,58 +10,58 @@ export declare const FieldAutoNumberParamsFormatValidator: z.ZodUnion<[z.ZodObje
     type: z.ZodLiteral<FieldAutoNumberParamsFormatType.NUMBER>;
     value: z.ZodNumber;
 }, "strip", z.ZodTypeAny, {
-    value: number;
     type: FieldAutoNumberParamsFormatType.NUMBER;
+    value: number;
 }, {
-    value: number;
     type: FieldAutoNumberParamsFormatType.NUMBER;
+    value: number;
 }>, z.ZodObject<{
     type: z.ZodLiteral<FieldAutoNumberParamsFormatType.PREFIX_SUFFIX>;
     value: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    value: string;
     type: FieldAutoNumberParamsFormatType.PREFIX_SUFFIX;
+    value: string;
 }, {
-    value: string;
     type: FieldAutoNumberParamsFormatType.PREFIX_SUFFIX;
+    value: string;
 }>]>;
 export declare const FieldAutoNumberParamsValidator: z.ZodObject<{
     format: z.ZodArray<z.ZodUnion<[z.ZodObject<{
         type: z.ZodLiteral<FieldAutoNumberParamsFormatType.NUMBER>;
         value: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
-        value: number;
         type: FieldAutoNumberParamsFormatType.NUMBER;
+        value: number;
     }, {
-        value: number;
         type: FieldAutoNumberParamsFormatType.NUMBER;
+        value: number;
     }>, z.ZodObject<{
         type: z.ZodLiteral<FieldAutoNumberParamsFormatType.PREFIX_SUFFIX>;
         value: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        value: string;
         type: FieldAutoNumberParamsFormatType.PREFIX_SUFFIX;
+        value: string;
     }, {
-        value: string;
         type: FieldAutoNumberParamsFormatType.PREFIX_SUFFIX;
+        value: string;
     }>]>, "many">;
     reCalculate: z.ZodOptional<z.ZodBoolean>;
 }, "strip", z.ZodTypeAny, {
     format: ({
-        value: number;
         type: FieldAutoNumberParamsFormatType.NUMBER;
+        value: number;
     } | {
-        value: string;
         type: FieldAutoNumberParamsFormatType.PREFIX_SUFFIX;
+        value: string;
     })[];
     reCalculate?: boolean | undefined;
 }, {
     format: ({
-        value: number;
         type: FieldAutoNumberParamsFormatType.NUMBER;
+        value: number;
     } | {
-        value: string;
         type: FieldAutoNumberParamsFormatType.PREFIX_SUFFIX;
+        value: string;
     })[];
     reCalculate?: boolean | undefined;
 }>;

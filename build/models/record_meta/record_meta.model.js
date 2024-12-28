@@ -1,8 +1,6 @@
 "use strict";
 
 // src/models/record_meta/record_meta.model.ts
-var _a;
-var _b;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RecordMetaModel = void 0;
 var tslib_1 = require("tslib");
@@ -53,16 +51,6 @@ tslib_1.__decorate([
   tslib_1.__metadata("design:type", Object)
 ], RecordMetaModel.prototype, "createdBy", void 0);
 tslib_1.__decorate([
-  sequelize_typescript_1.CreatedAt,
-  (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
-  tslib_1.__metadata("design:type", typeof (_a = typeof Date !== "undefined" && Date) === "function" ? _a : Object)
-], RecordMetaModel.prototype, "createdAt", void 0);
-tslib_1.__decorate([
-  sequelize_typescript_1.UpdatedAt,
-  (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
-  tslib_1.__metadata("design:type", typeof (_b = typeof Date !== "undefined" && Date) === "function" ? _b : Object)
-], RecordMetaModel.prototype, "updatedAt", void 0);
-tslib_1.__decorate([
   sequelize_typescript_1.DeletedAt,
   (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
   sequelize_typescript_1.Index,
@@ -72,6 +60,7 @@ exports.RecordMetaModel = RecordMetaModel = tslib_1.__decorate([
   (0, sequelize_typescript_1.Table)({
     modelName: "recordMeta",
     tableName: "RecordMetas",
-    paranoid: true
+    paranoid: true,
+    timestamps: false
   })
 ], RecordMetaModel);
