@@ -31,7 +31,7 @@ module.exports = __toCommonJS(formula_exports);
 // src/fields/formula/formula.interface.ts
 var import_zod = require("zod");
 
-// src/field-datatype.ts
+// src/field_datatype.ts
 var FieldDataType = {
   TEXT: 1,
   CHECKBOX: 2,

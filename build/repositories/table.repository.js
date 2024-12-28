@@ -34,14 +34,14 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// src/field-datatype.ts
+// src/field_datatype.ts
 var field_datatype_exports = {};
 __export(field_datatype_exports, {
   FieldDataType: () => FieldDataType
 });
 var FieldDataType;
 var init_field_datatype = __esm({
-  "src/field-datatype.ts"() {
+  "src/field_datatype.ts"() {
     "use strict";
     FieldDataType = {
       TEXT: 1,
@@ -171,9 +171,9 @@ var require_field_model = __commonJS({
   }
 });
 
-// src/models/record-meta/record-meta.model.ts
+// src/models/record_meta/record_meta.model.ts
 var require_record_meta_model = __commonJS({
-  "src/models/record-meta/record-meta.model.ts"(exports2) {
+  "src/models/record_meta/record_meta.model.ts"(exports2) {
     "use strict";
     var _a;
     var _b;
@@ -271,14 +271,14 @@ __export(models_exports, {
 var field_exports = {};
 __reExport(field_exports, __toESM(require_field_model()));
 
-// src/models/record-meta/index.ts
+// src/models/record_meta/index.ts
 var record_meta_exports = {};
 __reExport(record_meta_exports, __toESM(require_record_meta_model()));
 
 // src/models/index.ts
 __reExport(models_exports, field_exports);
 
-// src/models/record-data/record-data.column.ts
+// src/models/record_data/record_data.column.ts
 var import_lodash = require("lodash");
 var import_sequelize_typescript = require("sequelize-typescript");
 var import_ulidx = require("ulidx");
@@ -327,7 +327,7 @@ var catchError = async (promise) => {
 // src/repositories/_repository.ts
 var import_sequelize = require("sequelize");
 
-// src/table-connection.ts
+// src/table_connection.ts
 var import_lodash2 = require("lodash");
 var import_promise = require("mysql2/promise");
 var import_sequelize_typescript2 = require("sequelize-typescript");

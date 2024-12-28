@@ -11,7 +11,7 @@ import type {
 } from 'sequelize';
 import { Model as _Model } from 'sequelize';
 import { type Model, type ModelCtor } from 'sequelize-typescript';
-import { getTableConnection } from 'table-connection';
+import { getTableConnection } from 'table_connection';
 import type { IRepository, ISequelize } from '../interfaces/sequelize.interface';
 
 export abstract class _Repository<I> {

@@ -1,6 +1,6 @@
 import { Column, CreatedAt, DataType, DeletedAt, Index, Model, PrimaryKey, Table, UpdatedAt } from 'sequelize-typescript';
 import { isValid, ulid } from 'ulidx';
-import type { IRecordMetaModel } from './record-meta.interface';
+import type { IRecordMetaModel } from './record_meta.interface';
 
 @Table({
 	modelName: 'recordMeta',

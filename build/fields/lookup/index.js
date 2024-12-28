@@ -38,7 +38,7 @@ module.exports = __toCommonJS(lookup_exports);
 // src/fields/lookup/lookup.interface.ts
 var import_zod = require("zod");
 
-// src/field-datatype.ts
+// src/field_datatype.ts
 var FieldDataType = {
   TEXT: 1,
   CHECKBOX: 2,

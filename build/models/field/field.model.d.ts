@@ -1,8 +1,8 @@
 import { Model } from 'sequelize-typescript';
-import { FieldDataType } from '../../field-datatype';
-import type { IFieldInitialData } from './field-initial-data';
-import type { IFieldParams } from './field-params';
+import { FieldDataType } from '../../field_datatype';
 import type { IFieldModel } from './field.interface';
+import type { IFieldInitialData } from './field_initial_data';
+import type { IFieldParams } from './field_params';
 export declare class FieldModel extends Model implements IFieldModel {
     id: string;
     tableID: string;

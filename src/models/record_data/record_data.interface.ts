@@ -1,4 +1,4 @@
-import type { IFieldData } from '../field/field-data';
+import type { IFieldData } from '../field/field_data';
 
 export type IRecordDataModel = {
 	id: string;

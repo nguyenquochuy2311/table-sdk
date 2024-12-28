@@ -84,18 +84,18 @@ export declare const conditionLookupValidator: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     fieldID: string;
     order: number;
+    type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
     id?: string | undefined;
     operator?: CONDITION_OPERATOR | undefined;
-    type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
     data?: any;
     field?: any;
     error?: any;
 }, {
     fieldID: string;
     order: number;
+    type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
     id?: string | undefined;
     operator?: CONDITION_OPERATOR | undefined;
-    type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
     data?: any;
     field?: any;
     error?: any;
@@ -127,18 +127,18 @@ export declare const FieldLookupParamsValidator: z.ZodObject<{
             }, "strip", z.ZodTypeAny, {
                 fieldID: string;
                 order: number;
+                type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
                 id?: string | undefined;
                 operator?: CONDITION_OPERATOR | undefined;
-                type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
                 data?: any;
                 field?: any;
                 error?: any;
             }, {
                 fieldID: string;
                 order: number;
+                type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
                 id?: string | undefined;
                 operator?: CONDITION_OPERATOR | undefined;
-                type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
                 data?: any;
                 field?: any;
                 error?: any;
@@ -155,18 +155,18 @@ export declare const FieldLookupParamsValidator: z.ZodObject<{
             }, "strip", z.ZodTypeAny, {
                 fieldID: string;
                 order: number;
+                type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
                 id?: string | undefined;
                 operator?: CONDITION_OPERATOR | undefined;
-                type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
                 data?: any;
                 field?: any;
                 error?: any;
             }, {
                 fieldID: string;
                 order: number;
+                type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
                 id?: string | undefined;
                 operator?: CONDITION_OPERATOR | undefined;
-                type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
                 data?: any;
                 field?: any;
                 error?: any;
@@ -177,9 +177,9 @@ export declare const FieldLookupParamsValidator: z.ZodObject<{
             options: {
                 fieldID: string;
                 order: number;
+                type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
                 id?: string | undefined;
                 operator?: CONDITION_OPERATOR | undefined;
-                type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
                 data?: any;
                 field?: any;
                 error?: any;
@@ -191,9 +191,9 @@ export declare const FieldLookupParamsValidator: z.ZodObject<{
             options: {
                 fieldID: string;
                 order: number;
+                type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
                 id?: string | undefined;
                 operator?: CONDITION_OPERATOR | undefined;
-                type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
                 data?: any;
                 field?: any;
                 error?: any;
@@ -203,18 +203,18 @@ export declare const FieldLookupParamsValidator: z.ZodObject<{
             logicalExpression?: string | undefined;
         }>>>;
     }, "strip", z.ZodTypeAny, {
-        operator: CalculationType;
         customSelectedAmount: number | null;
         arrangeSelectedData: number | null;
         sourceBoardID: string;
         sourceFieldID: string;
+        operator: CalculationType;
         filter?: {
             options: {
                 fieldID: string;
                 order: number;
+                type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
                 id?: string | undefined;
                 operator?: CONDITION_OPERATOR | undefined;
-                type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
                 data?: any;
                 field?: any;
                 error?: any;
@@ -223,20 +223,19 @@ export declare const FieldLookupParamsValidator: z.ZodObject<{
             logicalOperator: LOGICAL_OPERATOR;
             logicalExpression?: string | undefined;
         } | null | undefined;
+        format?: any;
         sourceFieldDataType?: number | undefined;
         sourceFieldParams?: any;
-        format?: any;
     }, {
         sourceBoardID: string;
         sourceFieldID: string;
-        operator?: CalculationType | undefined;
         filter?: {
             options: {
                 fieldID: string;
                 order: number;
+                type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
                 id?: string | undefined;
                 operator?: CONDITION_OPERATOR | undefined;
-                type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
                 data?: any;
                 field?: any;
                 error?: any;
@@ -245,26 +244,27 @@ export declare const FieldLookupParamsValidator: z.ZodObject<{
             logicalOperator: LOGICAL_OPERATOR;
             logicalExpression?: string | undefined;
         } | null | undefined;
+        format?: any;
         customSelectedAmount?: number | null | undefined;
         arrangeSelectedData?: number | null | undefined;
         sourceFieldDataType?: number | undefined;
         sourceFieldParams?: any;
-        format?: any;
+        operator?: CalculationType | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     lookup: {
-        operator: CalculationType;
         customSelectedAmount: number | null;
         arrangeSelectedData: number | null;
         sourceBoardID: string;
         sourceFieldID: string;
+        operator: CalculationType;
         filter?: {
             options: {
                 fieldID: string;
                 order: number;
+                type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
                 id?: string | undefined;
                 operator?: CONDITION_OPERATOR | undefined;
-                type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
                 data?: any;
                 field?: any;
                 error?: any;
@@ -273,22 +273,21 @@ export declare const FieldLookupParamsValidator: z.ZodObject<{
             logicalOperator: LOGICAL_OPERATOR;
             logicalExpression?: string | undefined;
         } | null | undefined;
+        format?: any;
         sourceFieldDataType?: number | undefined;
         sourceFieldParams?: any;
-        format?: any;
     };
 }, {
     lookup: {
         sourceBoardID: string;
         sourceFieldID: string;
-        operator?: CalculationType | undefined;
         filter?: {
             options: {
                 fieldID: string;
                 order: number;
+                type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
                 id?: string | undefined;
                 operator?: CONDITION_OPERATOR | undefined;
-                type?: LOOKUP_FILTER_VALUE_TYPE | undefined;
                 data?: any;
                 field?: any;
                 error?: any;
@@ -297,11 +296,12 @@ export declare const FieldLookupParamsValidator: z.ZodObject<{
             logicalOperator: LOGICAL_OPERATOR;
             logicalExpression?: string | undefined;
         } | null | undefined;
+        format?: any;
         customSelectedAmount?: number | null | undefined;
         arrangeSelectedData?: number | null | undefined;
         sourceFieldDataType?: number | undefined;
         sourceFieldParams?: any;
-        format?: any;
+        operator?: CalculationType | undefined;
     };
 }>;
 export declare const FieldLookupDataValidator: z.ZodOptional<z.ZodNull>;
