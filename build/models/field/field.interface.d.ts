@@ -1,6 +1,6 @@
-import type { FieldDataType } from '../../field-datatype';
-import type { IFieldInitialData } from './field-initial-data';
-import type { IFieldParams } from './field-params';
+import type { FieldDataType } from '../../field_datatype';
+import type { IFieldInitialData } from './field_initial_data';
+import type { IFieldParams } from './field_params';
 export interface IFieldModel {
     id: string;
     tableID: string;

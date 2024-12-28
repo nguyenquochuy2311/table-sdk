@@ -34,14 +34,14 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// src/field-datatype.ts
+// src/field_datatype.ts
 var field_datatype_exports = {};
 __export(field_datatype_exports, {
   FieldDataType: () => FieldDataType
 });
 var FieldDataType;
 var init_field_datatype = __esm({
-  "src/field-datatype.ts"() {
+  "src/field_datatype.ts"() {
     "use strict";
     FieldDataType = {
       TEXT: 1,

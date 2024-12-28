@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { IFieldModel } from '../..//models/field';
+import type { IFieldModel } from '../../models/field';
 export declare const FieldTextParamsValidator: z.ZodDefault<z.ZodNullable<z.ZodObject<{
     notAllowDuplicate: z.ZodDefault<z.ZodNullable<z.ZodBoolean>>;
 }, "strip", z.ZodTypeAny, {
