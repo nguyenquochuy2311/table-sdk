@@ -1,4 +1,4 @@
-import { Column, CreatedAt, DataType, DeletedAt, Index, Model, PrimaryKey, Table, UpdatedAt } from 'sequelize-typescript';
+import { Column, DataType, DeletedAt, Index, Model, PrimaryKey, Table } from 'sequelize-typescript';
 import { isValid, ulid } from 'ulidx';
 import type { IRecordMetaModel } from './record_meta.interface';
 
@@ -6,6 +6,7 @@ import type { IRecordMetaModel } from './record_meta.interface';
 	modelName: 'recordMeta',
 	tableName: 'RecordMetas',
 	paranoid: true,
+	timestamps: false,
 })
 export class RecordMetaModel extends Model implements IRecordMetaModel {
 	@PrimaryKey
@@ -44,14 +45,6 @@ export class RecordMetaModel extends Model implements IRecordMetaModel {
 		},
 	})
 	declare createdBy: string | null;
-
-	@CreatedAt
-	@Column({ type: DataType.DATE })
-	declare createdAt: Date;
-
-	@UpdatedAt
-	@Column({ type: DataType.DATE })
-	declare updatedAt: Date;
 
 	@DeletedAt
 	@Column({ type: DataType.DATE })

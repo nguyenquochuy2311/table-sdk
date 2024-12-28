@@ -13,6 +13,14 @@ export const RecordDataColumn = (fieldIDs: string[]): Record<string, ModelAttrib
 			},
 		},
 	},
+	createdAt: {
+		type: DataType.DATE,
+		allowNull: false,
+	},
+	updatedAt: {
+		type: DataType.DATE,
+		allowNull: false,
+	},
 	deletedAt: {
 		type: DataType.DATE,
 	},

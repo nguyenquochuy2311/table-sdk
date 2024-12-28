@@ -175,8 +175,6 @@ var require_field_model = __commonJS({
 var require_record_meta_model = __commonJS({
   "src/models/record_meta/record_meta.model.ts"(exports2) {
     "use strict";
-    var _a;
-    var _b;
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.RecordMetaModel = void 0;
     var tslib_1 = require("tslib");
@@ -227,16 +225,6 @@ var require_record_meta_model = __commonJS({
       tslib_1.__metadata("design:type", Object)
     ], RecordMetaModel3.prototype, "createdBy", void 0);
     tslib_1.__decorate([
-      sequelize_typescript_1.CreatedAt,
-      (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
-      tslib_1.__metadata("design:type", typeof (_a = typeof Date !== "undefined" && Date) === "function" ? _a : Object)
-    ], RecordMetaModel3.prototype, "createdAt", void 0);
-    tslib_1.__decorate([
-      sequelize_typescript_1.UpdatedAt,
-      (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
-      tslib_1.__metadata("design:type", typeof (_b = typeof Date !== "undefined" && Date) === "function" ? _b : Object)
-    ], RecordMetaModel3.prototype, "updatedAt", void 0);
-    tslib_1.__decorate([
       sequelize_typescript_1.DeletedAt,
       (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
       sequelize_typescript_1.Index,
@@ -246,7 +234,8 @@ var require_record_meta_model = __commonJS({
       (0, sequelize_typescript_1.Table)({
         modelName: "recordMeta",
         tableName: "RecordMetas",
-        paranoid: true
+        paranoid: true,
+        timestamps: false
       })
     ], RecordMetaModel3);
   }
@@ -291,6 +280,14 @@ var RecordDataColumn = (fieldIDs) => ({
         return (0, import_ulidx.isValid)(value);
       }
     }
+  },
+  createdAt: {
+    type: import_sequelize_typescript.DataType.DATE,
+    allowNull: false
+  },
+  updatedAt: {
+    type: import_sequelize_typescript.DataType.DATE,
+    allowNull: false
   },
   deletedAt: {
     type: import_sequelize_typescript.DataType.DATE
@@ -531,7 +528,7 @@ var _TableRepository = class extends _Repository {
       indexes: [{ name: "idx_deletedAt", fields: ["deletedAt"] }],
       modelName: this.parseTableID,
       tableName: this.parseTableID,
-      timestamps: false,
+      timestamps: true,
       paranoid: true
     });
     this.connection.models[this.parseTableID].belongsTo(this.connection.getRepository(models_exports.RecordMetaModel), {
