@@ -27,8 +27,8 @@ declare const typeUsers: z.ZodObject<{
         avatar?: any;
     }>, "many">>;
 }, "strip", z.ZodTypeAny, {
-    type: PeopleIncludeModeEnum.USERS;
     value: string[];
+    type: PeopleIncludeModeEnum.USERS;
     selected?: {
         name: string;
         id: string;
@@ -36,8 +36,8 @@ declare const typeUsers: z.ZodObject<{
         avatar?: any;
     }[] | undefined;
 }, {
-    type: PeopleIncludeModeEnum.USERS;
     value: string[];
+    type: PeopleIncludeModeEnum.USERS;
     selected?: {
         name: string;
         id: string;
@@ -65,8 +65,8 @@ declare const typeTeams: z.ZodObject<{
         avatar?: any;
     }>, "many">>;
 }, "strip", z.ZodTypeAny, {
-    type: PeopleIncludeModeEnum.TEAMS;
     value: string[];
+    type: PeopleIncludeModeEnum.TEAMS;
     selected?: {
         name: string;
         id: string;
@@ -74,8 +74,8 @@ declare const typeTeams: z.ZodObject<{
         avatar?: any;
     }[] | undefined;
 }, {
-    type: PeopleIncludeModeEnum.TEAMS;
     value: string[];
+    type: PeopleIncludeModeEnum.TEAMS;
     selected?: {
         name: string;
         id: string;
@@ -147,8 +147,8 @@ export declare const FieldPeopleParamsValidator: z.ZodDefault<z.ZodObject<{
             avatar?: any;
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
-        type: PeopleIncludeModeEnum.USERS;
         value: string[];
+        type: PeopleIncludeModeEnum.USERS;
         selected?: {
             name: string;
             id: string;
@@ -156,8 +156,8 @@ export declare const FieldPeopleParamsValidator: z.ZodDefault<z.ZodObject<{
             avatar?: any;
         }[] | undefined;
     }, {
-        type: PeopleIncludeModeEnum.USERS;
         value: string[];
+        type: PeopleIncludeModeEnum.USERS;
         selected?: {
             name: string;
             id: string;
@@ -184,8 +184,8 @@ export declare const FieldPeopleParamsValidator: z.ZodDefault<z.ZodObject<{
             avatar?: any;
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
-        type: PeopleIncludeModeEnum.TEAMS;
         value: string[];
+        type: PeopleIncludeModeEnum.TEAMS;
         selected?: {
             name: string;
             id: string;
@@ -193,8 +193,8 @@ export declare const FieldPeopleParamsValidator: z.ZodDefault<z.ZodObject<{
             avatar?: any;
         }[] | undefined;
     }, {
-        type: PeopleIncludeModeEnum.TEAMS;
         value: string[];
+        type: PeopleIncludeModeEnum.TEAMS;
         selected?: {
             name: string;
             id: string;
@@ -228,8 +228,8 @@ export declare const FieldPeopleParamsValidator: z.ZodDefault<z.ZodObject<{
             avatar?: any;
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
-        type: PeopleIncludeModeEnum.USERS;
         value: string[];
+        type: PeopleIncludeModeEnum.USERS;
         selected?: {
             name: string;
             id: string;
@@ -237,8 +237,8 @@ export declare const FieldPeopleParamsValidator: z.ZodDefault<z.ZodObject<{
             avatar?: any;
         }[] | undefined;
     }, {
-        type: PeopleIncludeModeEnum.USERS;
         value: string[];
+        type: PeopleIncludeModeEnum.USERS;
         selected?: {
             name: string;
             id: string;
@@ -265,8 +265,8 @@ export declare const FieldPeopleParamsValidator: z.ZodDefault<z.ZodObject<{
             avatar?: any;
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
-        type: PeopleIncludeModeEnum.TEAMS;
         value: string[];
+        type: PeopleIncludeModeEnum.TEAMS;
         selected?: {
             name: string;
             id: string;
@@ -274,8 +274,8 @@ export declare const FieldPeopleParamsValidator: z.ZodDefault<z.ZodObject<{
             avatar?: any;
         }[] | undefined;
     }, {
-        type: PeopleIncludeModeEnum.TEAMS;
         value: string[];
+        type: PeopleIncludeModeEnum.TEAMS;
         selected?: {
             name: string;
             id: string;
@@ -289,8 +289,8 @@ export declare const FieldPeopleParamsValidator: z.ZodDefault<z.ZodObject<{
     includeSetting: {
         type: PeopleIncludeModeEnum.ALL_WORKSPACE_MEMBER | PeopleIncludeModeEnum.CURRENT_VIEWER | PeopleIncludeModeEnum.MEMBER_SAME_TEAM;
     } | {
-        type: PeopleIncludeModeEnum.USERS;
         value: string[];
+        type: PeopleIncludeModeEnum.USERS;
         selected?: {
             name: string;
             id: string;
@@ -298,8 +298,8 @@ export declare const FieldPeopleParamsValidator: z.ZodDefault<z.ZodObject<{
             avatar?: any;
         }[] | undefined;
     } | {
-        type: PeopleIncludeModeEnum.TEAMS;
         value: string[];
+        type: PeopleIncludeModeEnum.TEAMS;
         selected?: {
             name: string;
             id: string;
@@ -308,8 +308,8 @@ export declare const FieldPeopleParamsValidator: z.ZodDefault<z.ZodObject<{
         }[] | undefined;
     };
     excludeSetting: {
-        type: PeopleIncludeModeEnum.USERS;
         value: string[];
+        type: PeopleIncludeModeEnum.USERS;
         selected?: {
             name: string;
             id: string;
@@ -317,8 +317,8 @@ export declare const FieldPeopleParamsValidator: z.ZodDefault<z.ZodObject<{
             avatar?: any;
         }[] | undefined;
     } | {
-        type: PeopleIncludeModeEnum.TEAMS;
         value: string[];
+        type: PeopleIncludeModeEnum.TEAMS;
         selected?: {
             name: string;
             id: string;
@@ -333,8 +333,8 @@ export declare const FieldPeopleParamsValidator: z.ZodDefault<z.ZodObject<{
     includeSetting: {
         type: PeopleIncludeModeEnum.ALL_WORKSPACE_MEMBER | PeopleIncludeModeEnum.CURRENT_VIEWER | PeopleIncludeModeEnum.MEMBER_SAME_TEAM;
     } | {
-        type: PeopleIncludeModeEnum.USERS;
         value: string[];
+        type: PeopleIncludeModeEnum.USERS;
         selected?: {
             name: string;
             id: string;
@@ -342,8 +342,8 @@ export declare const FieldPeopleParamsValidator: z.ZodDefault<z.ZodObject<{
             avatar?: any;
         }[] | undefined;
     } | {
-        type: PeopleIncludeModeEnum.TEAMS;
         value: string[];
+        type: PeopleIncludeModeEnum.TEAMS;
         selected?: {
             name: string;
             id: string;
@@ -353,8 +353,8 @@ export declare const FieldPeopleParamsValidator: z.ZodDefault<z.ZodObject<{
     };
     isNotifyAdded?: boolean | undefined;
     excludeSetting?: {
-        type: PeopleIncludeModeEnum.USERS;
         value: string[];
+        type: PeopleIncludeModeEnum.USERS;
         selected?: {
             name: string;
             id: string;
@@ -362,8 +362,8 @@ export declare const FieldPeopleParamsValidator: z.ZodDefault<z.ZodObject<{
             avatar?: any;
         }[] | undefined;
     } | {
-        type: PeopleIncludeModeEnum.TEAMS;
         value: string[];
+        type: PeopleIncludeModeEnum.TEAMS;
         selected?: {
             name: string;
             id: string;
