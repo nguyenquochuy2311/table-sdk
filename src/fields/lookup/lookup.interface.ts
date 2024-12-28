@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { FieldDataType } from '../../field-datatype';
+import { FieldDataType } from '../../field_datatype';
 import type { IFieldModel } from '../../models/field';
 
 export enum CalculationType {

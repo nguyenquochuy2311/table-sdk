@@ -1,10 +1,10 @@
 import { values } from 'lodash';
 import { Column, CreatedAt, DataType, DeletedAt, Index, Model, PrimaryKey, Table, UpdatedAt } from 'sequelize-typescript';
 import { isValid, ulid } from 'ulidx';
-import { FieldDataType } from '../../field-datatype';
-import type { IFieldInitialData } from './field-initial-data';
-import type { IFieldParams } from './field-params';
+import { FieldDataType } from '../../field_datatype';
 import type { IFieldModel } from './field.interface';
+import type { IFieldInitialData } from './field_initial_data';
+import type { IFieldParams } from './field_params';
 
 @Table({
 	modelName: 'field',
