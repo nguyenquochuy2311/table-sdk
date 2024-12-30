@@ -2336,7 +2336,7 @@ var initTableConnection = async (opts) => {
       user: opts.username,
       password: opts.password,
       ssl: {
-        rejectUnauthorized: true
+        rejectUnauthorized: false
       }
     });
     await connection.ping();
