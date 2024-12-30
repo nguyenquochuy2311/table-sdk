@@ -343,7 +343,7 @@ var DEFAULT_CONFIG = {
   },
   dialectOptions: {
     ssl: {
-      rejectUnauthorized: true
+      rejectUnauthorized: false
     }
   },
   benchmark: false,
